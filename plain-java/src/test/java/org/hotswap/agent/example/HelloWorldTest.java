@@ -28,7 +28,7 @@ public class HelloWorldTest {
 
     @Test
     public void extraClassPathAnnotationTest() throws Exception {
-        Class clazz = HelloWorld.class;
+        Class<?> clazz = HelloWorld.class;
 
         HelloAnnotation clazzAnnotation = (HelloAnnotation) clazz.getAnnotation(HelloAnnotation.class);
         Assert.assertEquals("hello extra", clazzAnnotation.value());

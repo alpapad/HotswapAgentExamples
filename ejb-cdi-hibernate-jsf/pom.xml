@@ -2,13 +2,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
+    
     <parent>
-        <groupId>org.hotswap.agent</groupId>
-        <artifactId>hotswap-agent-parent</artifactId>
+		<groupId>org.hotswap.agent.examples</groupId>
+        <artifactId>hotswap-agent-examples-parent</artifactId>
         <version>0.3.0-SNAPSHOT</version>
     </parent>
-
+    
+    
     <groupId>org.hotswap.examples</groupId>
     <artifactId>ejb-cdi-hibernate-jsf</artifactId>
 
@@ -133,13 +134,11 @@
         <dependency>
             <groupId>org.jmock</groupId>
             <artifactId>jmock-junit4</artifactId>
-            <version>2.6.0</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.jmock</groupId>
             <artifactId>jmock-legacy</artifactId>
-            <version>2.6.0</version>
             <scope>test</scope>
         </dependency>
 
@@ -203,7 +202,7 @@
                     <target>1.7</target>
                     <showDeprecation>true</showDeprecation>
                     <showWarnings>true</showWarnings>
-                    <executable>${env.JAVA_HOME_7}/bin/javac</executable>
+                    <!-- executable>${env.JAVA_HOME_7}/bin/javac</executable -->
                     <fork>true</fork>
                 </configuration>
             </plugin>

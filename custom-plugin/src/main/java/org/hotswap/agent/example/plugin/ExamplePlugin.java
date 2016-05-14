@@ -10,6 +10,7 @@ import org.hotswap.agent.logging.AgentLogger;
 import org.hotswap.agent.util.IOUtils;
 import org.hotswap.agent.util.PluginManagerInvoker;
 
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.URI;
@@ -102,9 +103,10 @@ public class ExamplePlugin {
     /**
      * Use @Watch annotation to register resource event listener (using file NIO events). See @Watch javadoc
      * for available method parameter types.
+     * @throws IOException 
      */
     @OnResourceFileEvent(path = "examplePlugin.resource")
-    public void watchForResourceChange(URI uri) throws ClassNotFoundException, IllegalAccessException, NoSuchMethodException, InvocationTargetException, NotFoundException, CannotCompileException {
+    public void watchForResourceChange(URI uri) throws ClassNotFoundException, IllegalAccessException, NoSuchMethodException, InvocationTargetException, NotFoundException, CannotCompileException, IOException {
         // simple example - read new value and set agentexamples via reflection
         String examplePluginResourceText = new String(IOUtils.toByteArray(uri));
 

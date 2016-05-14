@@ -60,7 +60,7 @@ public class HelloWorldHotswapTest {
         Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);
     }
 
-    private void checkAnnotations(Class clazz) throws Exception {
+    private void checkAnnotations(Class<?> clazz) throws Exception {
         HelloAnnotation clazzAnnotation = (HelloAnnotation) clazz.getAnnotation(HelloAnnotation.class);
         if (clazzAnnotation != null) // clazzAnnotation is not available for anonymous inner class
             Assert.assertEquals("hello hotswap", clazzAnnotation.value());

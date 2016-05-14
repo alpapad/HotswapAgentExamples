@@ -3,9 +3,13 @@
 
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.google.developers</groupId>
+	<parent>
+		<groupId>org.hotswap.agent.examples</groupId>
+		<artifactId>hotswap-agent-examples-parent</artifactId>
+		<version>0.3.0-SNAPSHOT</version>
+	</parent>
+	
 	<artifactId>gae-parent</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 
 	<packaging>pom</packaging>
 

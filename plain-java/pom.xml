@@ -5,19 +5,17 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.hotswap.agent</groupId>
-        <artifactId>hotswap-agent-parent</artifactId>
+		<groupId>org.hotswap.agent.examples</groupId>
+        <artifactId>hotswap-agent-examples-parent</artifactId>
         <version>0.3.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>org.hotswap.examples</groupId>
     <artifactId>plain-java</artifactId>
 
     <build>
         <plugins>
             <plugin>
                 <artifactId>maven-antrun-plugin</artifactId>
-                <version>1.7</version>
                 <executions>
                     <execution>
                         <phase>generate-sources</phase>
@@ -30,12 +28,12 @@
                                 <javac srcdir="src/main/java-extra" destdir="target/extra"/>
                                 <!--compile extra to backup to return previous state during tests -->
                                 <mkdir dir="target/extraBackup"/>
-                                <javac srcdir="src/main/java-extra" destdir="target/extraBackup"/>
+                                <javac srcdir="src/main/java-extra" destdir="target/extraBackup" includeantruntime="false"/>
 
 
                                 <!-- compile src/main/java-extra into target/extra -->
                                 <mkdir dir="target/hotswap"/>
-                                <javac srcdir="src/main/java-hotswap" destdir="target/hotswap"/>
+                                <javac srcdir="src/main/java-hotswap" destdir="target/hotswap" includeantruntime="false"/>
 
 
                                 <!-- copy src/main/resources-extra into target/extra -->
@@ -58,6 +56,41 @@
                 </executions>
             </plugin>
         </plugins>
+        <pluginManagement>
+        	<plugins>
+        		<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+        		<plugin>
+        			<groupId>org.eclipse.m2e</groupId>
+        			<artifactId>lifecycle-mapping</artifactId>
+        			<version>1.0.0</version>
+        			<configuration>
+        				<lifecycleMappingMetadata>
+        					<pluginExecutions>
+        						<pluginExecution>
+        							<pluginExecutionFilter>
+        								<groupId>
+        									org.apache.maven.plugins
+        								</groupId>
+        								<artifactId>
+        									maven-antrun-plugin
+        								</artifactId>
+        								<versionRange>
+        									[1.7,)
+        								</versionRange>
+        								<goals>
+        									<goal>run</goal>
+        								</goals>
+        							</pluginExecutionFilter>
+        							<action>
+        								<ignore></ignore>
+        							</action>
+        						</pluginExecution>
+        					</pluginExecutions>
+        				</lifecycleMappingMetadata>
+        			</configuration>
+        		</plugin>
+        	</plugins>
+        </pluginManagement>
     </build>
 
     <dependencies>

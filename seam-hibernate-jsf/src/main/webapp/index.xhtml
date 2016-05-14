@@ -9,6 +9,9 @@
 </h:head>
 <h:body>
     <h3>Seam-JSF-Hibernate test application</h3>
+    <h:outputText value="#{indexComponent.helloWorld()}" />
+    
+    
     <h:form>
         <h:panelGrid columns="1">
             <h:outputText value="Test messages : #{messages['test.hello_world']}" />

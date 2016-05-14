@@ -4,14 +4,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>org.hotswap.agent.examples</groupId>
-        <artifactId>hotswap-agent-examples-servlet-parent</artifactId>
-        <version>0.3.0-SNAPSHOT</version>
-        <relativePath>../hotswap-agent-examples-servlet-parent</relativePath>
-    </parent>
+	<parent>
+		<groupId>org.hotswap.agent.examples</groupId>
+		<artifactId>hotswap-agent-examples-parent</artifactId>
+		<version>0.3.0-SNAPSHOT</version>
+	</parent>
 
-    <groupId>org.hotswap.examples</groupId>
     <artifactId>spring-hibernate</artifactId>
     <packaging>war</packaging>
 
@@ -118,23 +116,27 @@
             <scope>runtime</scope>
         </dependency>
 
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+			<scope>provided</scope>
+		</dependency>
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.11</version>
             <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>org.jmock</groupId>
             <artifactId>jmock-junit4</artifactId>
-            <version>2.6.0</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.jmock</groupId>
             <artifactId>jmock-legacy</artifactId>
-            <version>2.6.0</version>
             <scope>test</scope>
         </dependency>
 
@@ -167,23 +169,22 @@
         <plugins>
             <plugin>
                 <artifactId>maven-antrun-plugin</artifactId>
-                <version>1.7</version>
                 <executions>
                     <execution>
                         <phase>generate-sources</phase>
                         <configuration>
-                            <tasks>
+                            <target>
                                 <property name="build.compiler" value="extJavac"/>
 
                                 <!-- compile src/main/java-extra into target/extra -->
                                 <mkdir dir="target/extra"/>
-                                <javac srcdir="src/main/java-extra" destdir="target/extra">
+                                <javac srcdir="src/main/java-extra" destdir="target/extra" includeantruntime="false">
                                     <classpath refid="maven.compile.classpath"/>
                                 </javac>
 
                                 <!-- compile src/main/java-extra into target/extra -->
                                 <mkdir dir="target/hotswap"/>
-                                <javac srcdir="src/main/java-hotswap" destdir="target/hotswap">
+                                <javac srcdir="src/main/java-hotswap" destdir="target/hotswap" includeantruntime="false">
                                     <classpath refid="maven.compile.classpath"/>
                                 </javac>
 
@@ -198,7 +199,7 @@
                                 <copy todir="target/watch">
                                     <fileset dir="src/main/resources-watch"/>
                                 </copy>
-                            </tasks>
+                            </target>
                         </configuration>
                         <goals>
                             <goal>run</goal>
